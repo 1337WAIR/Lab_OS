@@ -8,7 +8,7 @@
 4) Зробити git push у віддалений репозиторій у вітку lab_works_one_two.
 5) Додати в папку Readme файл із звітом до лабораторної, щоб його можна було передивлятись на репозиторію коли переходиш у вітку.
 
-### Скріншоти пройдених рівнів
+### Скріншоти пройдених рівнів.
 ![images1](screenshot/scr1.jpg)
 ![images2](screenshot/scr2.jpg)
 ### Створив локальний репозиторій із файлами hello.txt та bash скриптом.
@@ -37,3 +37,13 @@
     git push --set-upstream origin lab_works_one_two
 ```
 ![images7](screenshot/scr7.jpg)
+### Добавив README.md зі звітом і папку зі скріншотами, зробив комміт і запушив у вітку lab_works_one_two.
+```
+    git add README.md screnshot/
+```
+![images8](screenshot/scr8.jpg)
+```
+    git commit -m"add screnshot and README.md"
+    git push --set-upstream origin lab_works_one_two
+```
+![images9](screenshot/scr9.jpg)
