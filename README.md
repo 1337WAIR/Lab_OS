@@ -12,6 +12,7 @@
     docker pull wordpress
 ```
 > Після цього створив файл з розширенням yml для wordpress, куди вставив текст, який взяв з https://hub.docker.com/_/wordpress:
+
 ![images1](screenshot/img_lab3(1).png)
 
 >Підняв wordpress за допомогою команди
@@ -57,23 +58,30 @@
     docker build -t lab3 .
     docker run -d -p 80:80 lab3
 ```
+
 ![images1](screenshot/img_lab3(3).png)
+
 >Далі, я створив пустий репозиторій на docker hub і запушив туди свій образ.
 Для цього використав команду:
 ```
     docker push wair/lab3
 ```
+
 ![images1](screenshot/img_lab3(4).png)
+
 https://hub.docker.com/repository/docker/wair/lab3
 ### 4. Скачати Docker Image когось із групи і розвернути в себе контейнер з HTML сторінкою на порті 8086 ззовні.
 > Я взяв Docker Image Липчей Владислава(https://hub.docker.com/r/vladlipchey/labwork) з Docker hub і за допомогою команди docker pull зтянув його до себе.
 ```
     docker pull vladlipchey/labwork
 ```
+
 ![images1](screenshot/img_lab3(5).png)
+
 > Після цього я запустив його на порті 8086 за допомогою команди:
 ```
     docker run -d -p 8086:80  vladlipchey/labwork
 ```
+
 ![images1](screenshot/img_lab3(6).png)
 
