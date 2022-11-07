@@ -1,49 +1,60 @@
-#  Лабораторна робота №2.
-## Основні команди системи контролю версій Git.
+#  Лабораторна робота №5.
+## Деплой проекту на AWS EC2.
 ## Грига Михайло Михайлович <br> ІПЗ1.1
 ## План:
-1) Пройти гру Git Learn та зробити скріншоти пройдених рівнів.
-2) Зробити git init папки із файлом hello.txt та bash скриптом.
-3) Зробити git commit.
-4) Зробити git push у віддалений репозиторій у вітку lab_works_one_two.
-5) Додати в папку Readme файл із звітом до лабораторної, щоб його можна було передивлятись на репозиторію коли переходиш у вітку.
+1) Зареєструватись на AWS. 
+2) Створити інстанс EC2.
+3) Задеплоїти проект (може бути  html сторінка) і скинути посилання в звіт для можливості перегляду.
 
-### Скріншоти пройдених рівнів.
-![images1](screenshot/scr1.jpg)
-![images2](screenshot/scr2.jpg)
-### Створив локальний репозиторій із файлами hello.txt та bash скриптом.
+### Для початку я перейшов на сторінку https://portal.aws.amazon.com/billing/signup#/start/email і зареєструвався. Уже на головній сорінці зверху зправа я вибрав регіон в якому буде створений сервер(потрібно вибирати той, що ближче до мене).
+
+![images1](screenshot/scrr1.png)
+
+### Далі в пошуку я прописав і перейшов на сторінку EC2.
+
+![images1](screenshot/scrr2.png)
+
+### Після цього натиснув на кнопку Launch instanse
+### Дав назву для instanse. Зробив ключ, який відразу скачався.
+
+![images1](screenshot/scrr4.png)
+
+### Також поставив галочку біля allow HTTP traffic from the internet у Network settings. Всі інші налаштування залишив за замовчуванням.
+
+![images1](screenshot/scrr5.png)
+
+### Натиснув кнопку Launch instance і як можна побачити він відразу запустився.
+
+![images1](screenshot/scrr6.png)
+
+### Після цього я відкрив термінал Ubuntu в папці з ключем. Натиснувши кнопку Connect в інстансі, я скористався інструкцією яку побачив, а саме прописав команди:
 ```
-    git init
+    chmod 600 keyy.pem
+    ssh -i "keyy.pem" ubuntu@ec2-18-132-45-132.eu-west-2.compute.amazonaws.com
 ```
-![images3](screenshot/scr3.jpg)
-### Додав всі елементи в staging area і зробив commit
+
+![images1](screenshot/scrr7.png)
+
+### Таким чином я підключився до терміналу віддаленого убунту. Тепер я прописав команди щоб оновити пакети та встановити Apache HTTP Server.
 ```
-    git add .
-    git commit -m"add hello.txt and script.sh"
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install apache2
+    sudo ufw allow in "Apache Full"
+    sudo systemctl restart apache2
 ```
-![images4](screenshot/scr4.jpg)
-### Створив нову вітку lab_works_one_two і відразу перейшов до неї.
-```
-    git checkout -b "lab_works_one_two"
-```
-![images5](screenshot/scr5.jpg)
-### Підключився до віддаленого репозиторію.
-```
-    git remote add origin git@github.com:1337WAIR/Lab_OS.git
-```
-![images6](screenshot/scr6.jpg)
-### Зробив git push у віддалений репозиторій у вітку lab_works_one_two.
-```
-    git push --set-upstream origin lab_works_one_two
-```
-![images7](screenshot/scr7.jpg)
-### Добавив README.md зі звітом і папку зі скріншотами, зробив комміт і запушив у вітку lab_works_one_two.
-```
-    git add README.md screnshot/
-```
-![images8](screenshot/scr8.jpg)
-```
-    git commit -m"add screnshot and README.md"
-    git push --set-upstream origin lab_works_one_two
-```
-![images9](screenshot/scr9.jpg)
+
+![images1](screenshot/scrr8.png)
+
+### Створивши проект(html сторінку), я стиснув його в zip і відправив до віддаленого убунту.
+
+![images1](screenshot/scrr9.png)
+
+### Повернувшись на віддалене убунту, я розархівував index файл і перезаписав файл index.html в папці /var/www/html/.
+
+![images1](screenshot/scrr10.png)
+![images1](screenshot/scrr11.png)
+
+### Після цього я перейшов по адресі, яка вказана в тій же вкладці Connect і мені відкрилась моя сторінка.
+
+![images1](screenshot/scrr12.png)
